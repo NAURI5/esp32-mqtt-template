@@ -4,3 +4,4 @@
 .vscode/launch.json
 .vscode/ipch
 # src/credentials.h
+# git update-index --skip-worktree src/credentials.h
