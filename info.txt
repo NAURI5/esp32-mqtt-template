@@ -1,2 +1,6 @@
 https://www.reddit.com/r/esp8266/comments/6m7ktw/is_the_esp32_compatible_with_esp8266_sketches_in/
 Most sketches run fine by changing <include esp8266WiFi.h> to <include WiFi.h>
+
+
+[cannot open source file "Arduino.h"]
+Please remove .vscode folder from a project and restart VSCode.
