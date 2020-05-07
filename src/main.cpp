@@ -1,4 +1,6 @@
 #include <Arduino.h>
+#include "credentials.h"
+#include "settings.h"
 int i;
 
 void setup() {
@@ -9,7 +11,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  delay(1001);
+  delay(1009);
   i++;
   Serial.println(i);
 }
