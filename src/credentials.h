@@ -1,2 +1,2 @@
-#define mySSID "xxxx"
-#define myPASSWORD "yyyy"
+#define mySSID "test"
+#define myPASSWORD "test"
