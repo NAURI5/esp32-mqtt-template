@@ -9,6 +9,7 @@
 
 WiFiClient espClient;
 PubSubClient client(espClient); //MQTT client
+char message_buff[100]; //received cmds
 
 void setup_ota()
 {
@@ -115,12 +116,34 @@ void networking()
   }
 } // networking()
 
+void callback(char *topic, byte *payload, unsigned int length)
+{
+  Serial.print("Message arrived: [");
+  Serial.print(topic);
+  Serial.println("]"); // Prints out anything that's arrived from broker and from the topic that we've subscribed to.
+  int i;
+  for (i = 0; i < length; i++)
+  message_buff[i] = payload[i];
+  message_buff[i] = '\0';                  // We copy payload to message_buff because we can't make a string out of payload.
+  String msgString = String(message_buff); // Finally, converting our payload to a string so we can compare it.
+  String myTopic = String(topic);
+  
+  if (myTopic == String(prefixtopic) + "/cmd")
+  {
+    if (msgString == "REBOOT")
+    {
+      ESP.restart();
+    }
+  }
+
+} // callback()
+
 
 void setup() {
   delay(500);   
   Serial.begin(115200);
   client.setServer(MQTT_SERVER, MQTT_PORT); // Initialize MQTT service. Just once is required.
-  //client.setCallback(callback);             // Define the callback service to check with the server. Just once is required.
+  client.setCallback(callback);             // Define the callback service to check with the server. Just once is required.
   Serial.println("SETUP A");  
   networking();
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
