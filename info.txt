@@ -4,3 +4,7 @@ Most sketches run fine by changing <include esp8266WiFi.h> to <include WiFi.h>
 
 [cannot open source file "Arduino.h"]
 Please remove .vscode folder from a project and restart VSCode.
+
+[ESP8266 to ESP32]
+instead use #include <ESP8266WiFi.h> use #include <WiFi.h> for ESP32
+instead use #include <ESP8266WebServer.h> use #include <WebServer.h> for ESP32
